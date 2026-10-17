@@ -1,37 +1,28 @@
 import client from './client';
 
-/**
- * POST /auth/login
- * Returns: { access_token, token_type, user, message }
- */
-export async function loginUser(email, password) {
-  const response = await client.post('/auth/login', { email, password });
+export async function loginUser(email, password, role) {
+  const response = await client.post('/auth/login', { email, password, role });
   return response.data;
 }
 
-/**
- * POST /auth/register
- * Returns: { access_token, token_type, user, message }
- */
-export async function registerUser(fullname, email, password, role = 'patient') {
-  const response = await client.post('/auth/register', { fullname, email, password, role });
+export async function registerUser(fullname, email, password) {
+  const response = await client.post('/auth/register', { fullname, email, password, role: 'patient' });
   return response.data;
 }
 
-/**
- * GET /auth/me
- * Returns: { id, fullname, email, role, created_at }
- */
-export async function getMe() {
-  const response = await client.get('/auth/me');
+export async function changePassword(currentPassword, newPassword) {
+  const response = await client.post('/auth/change-password', {
+    current_password: currentPassword,
+    new_password: newPassword,
+  });
   return response.data;
 }
 
-/**
- * Client-side logout — clears stored tokens and cached prediction data.
- */
-export function logoutUser() {
-  localStorage.removeItem('medassist_token');
-  localStorage.removeItem('medassist_user');
-  sessionStorage.clear();
+export async function updateAccountProfile(data) {
+  const response = await client.put('/auth/profile', data);
+  return response.data;
+}
+
+export async function logoutUser() {
+  return Promise.resolve();
 }

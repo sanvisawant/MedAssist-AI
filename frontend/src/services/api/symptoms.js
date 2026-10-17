@@ -1,18 +1,11 @@
 import client from './client';
 
-/**
- * GET /symptoms
- * Returns: Array of { id, name, description, category, severity_weight, created_at }
- */
 export async function getSymptoms() {
-  const response = await client.get('/symptoms');
+  const response = await client.get('/symptoms?limit=500');
   return response.data;
 }
 
-/**
- * POST /symptoms  (admin only)
- */
-export async function addSymptom(data) {
-  const response = await client.post('/symptoms', data);
+export async function submitSymptoms(symptoms) {
+  const response = await client.post('/symptoms', symptoms);
   return response.data;
 }

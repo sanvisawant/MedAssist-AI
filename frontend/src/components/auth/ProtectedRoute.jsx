@@ -19,9 +19,9 @@ export default function ProtectedRoute({ children, allowedRoles }) {
   }
 
   if (allowedRoles && !allowedRoles.includes(user.role)) {
-    // Redirect unauthorized users to their role default landing page
-    const defaultLanding = user.role === 'doctor' ? '/dashboard/analytics' : '/dashboard/overview';
-    return <Navigate to={defaultLanding} replace />;
+    // Redirect authenticated but unauthorized users to login page
+    // LoginPage will automatically redirect them back to their own dashboard
+    return <Navigate to="/login" replace />;
   }
 
   return children;

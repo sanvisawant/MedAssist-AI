@@ -1,3 +1,3 @@
-export default function useAuth() {
-    return {};
-}
+import { useAuth } from '../context/AuthContext';
+export default useAuth;
+

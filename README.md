@@ -1,174 +1,432 @@
-# MedAssist AI — Clinical Symptom Screening & Disease Prediction Platform
+# 🩺 MedAssist AI
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688.svg)](https://fastapi.tiangolo.com/)
-[![React](https://img.shields.io/badge/Frontend-React%2019-61DAFB.svg)](https://react.dev/)
-[![Vite](https://img.shields.io/badge/Build-Vite-646CFF.svg)](https://vitejs.dev/)
-[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB.svg)](https://www.python.org/)
+### AI-Powered Healthcare Assistance & Disease Prediction Platform
 
-MedAssist AI is an intelligent healthcare platform that provides AI-assisted symptom screening, clinical disease predictions, risk assessment metrics, and care recommendations. Built as a monorepo, it features a high-performance **FastAPI + Machine Learning** backend and an **Interactive React 19 + Vite** frontend.
-
----
-
-## 🌟 Key Features
-
-- 🩺 **AI Symptom Screening**: Analyzes user-reported symptoms using an ensemble ML voting classifier (Random Forest + XGBoost + LightGBM).
-- 📊 **Single-Purpose Results Engine**:
-  - **Prediction**: Answers *"What condition might I have?"* with probability confidence scores.
-  - **Risk Assessment**: Answers *"How serious is it?"* with risk level tiers, severity scores, and emergency flags.
-  - **Recommendations**: Answers *"What should I do next?"* with actionable guidance, monitoring steps, self-care, and emergency triggers.
-- 👨‍⚕️ **Role-Based Access Control**:
-  - **Doctor Portal**: Real-time DB analytics, risk level breakdowns, appointment tracking, proportion-accurate disease distribution charts.
-  - **Patient Portal**: Personalized health overview, symptom checker, diagnostic history, saved reports, appointment scheduling.
-- 🔒 **Secure Authentication**: JWT Bearer token authentication with role-isolated session storage.
-- ⚡ **Preloaded ML Pipeline**: Startup lazy-loading for zero-latency inference on incoming prediction requests.
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-Framework-009688?logo=fastapi&logoColor=white)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-4169E1?logo=postgresql&logoColor=white)
+![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-ORM-D71F00?logo=sqlalchemy&logoColor=white)
+![Scikit--learn](https://img.shields.io/badge/Scikit--learn-ML-F7931E?logo=scikitlearn&logoColor=white)
+![XGBoost](https://img.shields.io/badge/XGBoost-ML-189FDD?logo=xgboost&logoColor=white)
+![LightGBM](https://img.shields.io/badge/LightGBM-ML-9ACD32?logo=lightgbm&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Container-2496ED?logo=docker&logoColor=white)
+![Swagger](https://img.shields.io/badge/Swagger-OpenAPI-85EA2D?logo=swagger&logoColor=black)
 
 ---
 
-## 🛠️ Technology Stack
+# 📌 Overview
 
-| Layer | Technology |
+**MedAssist AI** is an AI-powered healthcare platform designed to assist patients and healthcare professionals through symptom screening, disease prediction, risk assessment, personalized recommendations, health reports, appointments, and analytics.
+
+The application combines a **React frontend**, **FastAPI backend**, **PostgreSQL database**, and **Machine Learning pipeline** to provide an integrated healthcare management workflow.
+
+This repository contains the **backend and machine learning implementation completed for Milestone 3**, including:
+
+- Machine Learning pipeline
+- Backend REST APIs
+- Healthcare management modules
+- Authentication and authorization
+- Database integration
+- Disease prediction
+- Risk and severity assessment
+- Health reports
+- Analytics
+- Docker support
+
+---
+# 🚀 Deployment
+
+MedAssist AI has been successfully deployed and is available as a live web application for demonstration and evaluation.
+
+🌐 **Live Website:** https://medassistai-frontend.vercel.app
+
+### Deployment Platforms
+
+| Component | Platform |
 |---|---|
-| **Frontend** | React 19, Vite, Tailwind CSS, React Router v7, Axios |
-| **Backend API** | FastAPI, Pydantic v2, Uvicorn, Python 3.10+ |
-| **Machine Learning** | Scikit-Learn, XGBoost, LightGBM, Joblib, NumPy |
-| **Database & Auth** | SQLAlchemy, PostgreSQL (Production) / SQLite (Dev), JWT, Bcrypt |
-| **Containerization** | Docker, Docker Compose |
+| 🎨 **Frontend** | Vercel |
+| ⚙️ **Backend** | Render |
+| 🤖 **Machine Learning / AI Support** | Hugging Face |
+
+### Deployment Status
+
+✅ Frontend deployment completed successfully on Vercel.  
+✅ Backend deployment completed successfully on Render.  
+✅ Machine Learning components and model-related resources were integrated with the deployed application.  
+✅ The complete application was tested after deployment for the major healthcare workflows.
+
+The deployed application provides access to the implemented MedAssist AI features, including patient registration and login, symptom analysis, disease prediction, risk and severity assessment, health reports, appointments, doctor workflows, and administrative functionality.
+
+### Internship Evaluation Deployment
+
+The deployed version and corresponding project updates have also been completed in the **internship project branch for evaluation and milestone purposes**.
+
+This version is being maintained in the internship repository until the project evaluation and marks are completed.
 
 ---
 
-## 📂 Repository Structure
+# 🚀 Key Features
 
+| Module | Description |
+|---|---|
+| 🔐 **Authentication** | JWT-based authentication and role-based authorization |
+| 👤 **Patient Management** | Patient profile and information management |
+| 👨‍⚕️ **Doctor Management** | Doctor profiles and availability management |
+| 📅 **Appointments** | Appointment scheduling and status management |
+| 🧬 **Symptom Dictionary** | Management of supported symptoms |
+| 🧠 **Disease Prediction** | AI-based disease prediction from symptoms |
+| ⚠️ **Risk Assessment** | Health risk evaluation |
+| 📊 **Severity Analysis** | Severity and emergency assessment |
+| 📋 **Health Reports** | Medical report history and management |
+| 📈 **Analytics** | System and disease prediction analytics |
+| 🐳 **Docker** | Containerization and deployment support |
+
+---
+
+# 🧠 Disease Prediction Pipeline
+
+The disease prediction system follows a complete machine learning and healthcare assessment workflow:
+
+```text
+                User Symptoms
+                      │
+                      ▼
+              Symptom Validation
+                      │
+                      ▼
+                Preprocessing
+                      │
+                      ▼
+              Feature Extraction
+                      │
+                      ▼
+             Voting Classifier
+                      │
+                      ▼
+             Disease Prediction
+                      │
+                      ▼
+             Disease Name Mapping
+                      │
+                      ▼
+               Risk Assessment
+                      │
+                      ▼
+              Severity Analysis
+                      │
+                      ▼
+          Medical Recommendation
+                      │
+                      ▼
+                Health Report
 ```
-MedAssist-AI/
-├── backend/                  # FastAPI application & ML pipeline
+
+---
+
+# 🛠️ Technology Stack
+
+| Technology | Purpose |
+|---|---|
+| 🐍 **Python 3.10+** | Backend and Machine Learning development |
+| ⚡ **FastAPI** | REST API development |
+| ⚛️ **React 19** | Frontend development |
+| 🗄️ **PostgreSQL** | Database management |
+| 🔗 **SQLAlchemy** | ORM and database operations |
+| 📦 **Pydantic** | Request and response validation |
+| 🔐 **JWT** | Authentication and authorization |
+| 🧠 **Scikit-learn** | Machine Learning |
+| 🚀 **XGBoost** | Machine Learning model |
+| 💡 **LightGBM** | Machine Learning model |
+| 🤖 **Voting Classifier** | Ensemble disease prediction |
+| ⚙️ **Uvicorn** | FastAPI application server |
+| 🐳 **Docker** | Containerization |
+| 📖 **Swagger / OpenAPI** | API testing and documentation |
+
+---
+
+# 📂 Project Structure
+
+```text
+MedAssistAI/
+│
+├── backend/
 │   ├── app/
-│   │   ├── api/              # REST API routers & endpoints
-│   │   ├── core/             # Authentication & database connection
-│   │   ├── models/           # SQLAlchemy database schemas
-│   │   ├── ml/               # Model weights, datasets, & predictor
-│   │   └── services/         # Business logic services
-│   ├── main.py               # FastAPI entry point
-│   ├── requirements.txt      # Python dependencies
-│   └── docker-compose.yml    # Docker setup
-├── frontend/                 # React 19 + Vite client application
-│   ├── src/
-│   │   ├── components/       # UI components & layouts
-│   │   ├── context/          # React Context (AuthContext)
-│   │   ├── pages/            # Dashboard & Auth views
-│   │   ├── routes/           # Role-based protected routes
-│   │   └── services/         # API integration client
-│   ├── package.json          # Node dependencies
-│   └── vite.config.js        # Vite configuration
-├── .env.example              # Monorepo environment template
-├── .gitignore                # Global git ignore rules
-├── LICENSE                   # MIT License
-└── README.md                 # Project documentation
+│   │   ├── config/
+│   │   ├── database/
+│   │   ├── ml/
+│   │   ├── models/
+│   │   ├── routers/
+│   │   ├── schemas/
+│   │   ├── services/
+│   │   ├── utils/
+│   │   └── main.py
+│   │
+│   ├── Dockerfile
+│   ├── docker-compose.yml
+│   ├── render.yaml
+│   ├── requirements.txt
+│   └── tests
+│
+└── frontend/
+    ├── public/
+    ├── src/
+    │   ├── assets/
+    │   ├── components/
+    │   ├── constants/
+    │   ├── context/
+    │   ├── hooks/
+    │   ├── pages/
+    │   ├── routes/
+    │   ├── services/
+    │   └── styles/
+    │
+    ├── package.json
+    ├── vite.config.js
+    ├── vercel.json
+    └── README.md
 ```
 
 ---
 
-## 🚀 Quick Start Guide
+# 🔌 Backend API
 
-### Prerequisites
-- **Node.js**: v18+ 
-- **Python**: v3.10+
-- **Git**
+## 🔐 Authentication
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/auth/register` | Register a new user |
+| `POST` | `/auth/login` | Authenticate user and generate JWT |
+| `GET` | `/auth/me` | Get authenticated user information |
+
+### Supported Roles
+
+- 👤 Patient
+- 👨‍⚕️ Doctor
+- 🛡️ Admin
 
 ---
 
-### 1. Backend Setup
+## 👤 Patient Management
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/patient/profile` | Get patient profile |
+| `PUT` | `/patient/profile` | Update patient profile |
+| `GET` | `/patient/all` | Get authorized patient information |
+
+---
+
+## 👨‍⚕️ Doctor Management
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/doctor/profile` | Get doctor profile |
+| `PUT` | `/doctor/profile` | Update doctor profile and availability |
+| `GET` | `/doctor/all` | Get available doctors |
+
+---
+
+## 📅 Appointment Management
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/appointments` | Schedule an appointment |
+| `GET` | `/appointments/my` | View user's appointments |
+| `PUT` | `/appointments/{id}/status` | Update appointment status |
+| `GET` | `/appointments/all` | View all appointments |
+
+Patients can schedule appointments, while doctors and administrators can manage appointment status and monitor appointments according to their roles.
+
+---
+
+## 🧬 Symptom Dictionary
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/symptoms` | Retrieve supported symptoms |
+| `POST` | `/symptoms` | Add a new symptom |
+
+The symptom dictionary provides the supported symptoms used by the disease prediction system.
+
+Administrators can add new symptoms when required.
+
+---
+
+## 🧠 Disease Prediction
+
+### `POST /predict`
+
+Processes patient symptoms through the complete Machine Learning pipeline and returns:
+
+- Predicted disease
+- Risk assessment
+- Severity assessment
+- Medical recommendations
+- Health report information
+
+---
+
+## 📋 Health Reports
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/reports/my` | Get patient's report history |
+| `GET` | `/reports/patient/{patient_id}` | Get reports for a patient |
+| `GET` | `/reports/{id}` | Get detailed report |
+| `PUT` | `/reports/{id}/notes` | Add or update doctor notes |
+| `GET` | `/reports/{id}/download` | Download printable report |
+
+### Reports Include
+
+- Patient health information
+- Predicted disease
+- Risk assessment
+- Severity analysis
+- Medical recommendations
+- Doctor notes
+- Report history
+
+---
+
+## 📊 Analytics & Monitoring
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/analytics/summary` | System overview statistics |
+| `GET` | `/analytics/diseases` | Disease prediction distribution |
+
+Analytics provide insights into system usage and disease prediction patterns.
+
+---
+
+# 🔐 Authentication & Authorization
+
+MedAssist AI uses **JWT-based authentication** combined with **role-based authorization**.
+
+```text
+             User Login
+                  │
+                  ▼
+        Credential Validation
+                  │
+                  ▼
+          JWT Access Token
+                  │
+                  ▼
+          Role Verification
+                  │
+                  ▼
+          Protected API Access
+```
+
+Role-based authorization ensures that users can access only the functionality permitted for their role.
+
+---
+
+# 🗄️ Database
+
+The backend uses **PostgreSQL** with **SQLAlchemy ORM**.
+
+### Database Entities
+
+- 👤 Users
+- 🧑‍⚕️ Patients
+- 👨‍⚕️ Doctors
+- 📅 Appointments
+- 🧬 Symptoms
+- 📋 Health Reports
+
+---
+
+# 🐳 Docker Support
+
+Docker configuration is provided through:
+
+```text
+Dockerfile
+docker-compose.yml
+```
+
+### Build and Run
 
 ```bash
-# Navigate to backend directory
-cd backend
-
-# Create virtual environment
-python -m venv venv
-
-# Activate virtual environment
-# Windows (PowerShell):
-venv\Scripts\activate
-# macOS/Linux:
-source venv/bin/activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Start FastAPI server
-python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+docker compose up --build
 ```
 
-> **Backend Server**: `http://127.0.0.1:8000`  
-> **Interactive API Docs**: `http://127.0.0.1:8000/docs`
-
----
-
-### 2. Frontend Setup
-
-In a new terminal window:
+### Stop Containers
 
 ```bash
-# Navigate to frontend directory
-cd frontend
-
-# Install dependencies
-npm install
-
-# Start Vite dev server
-npm run dev
-```
-
-> **Frontend Application**: `http://localhost:5173`
-
----
-
-### 3. Docker Setup (Optional)
-
-```bash
-cd backend
-docker-compose up --build -d
+docker compose down
 ```
 
 ---
 
-## ⚙️ Environment Variables
+# 📖 API Documentation
 
-Copy `.env.example` templates to create local `.env` files:
+MedAssist AI provides interactive **Swagger / OpenAPI documentation**.
 
-#### `backend/.env`
-```env
-APP_NAME="MedAssistAI Backend"
-APP_VERSION="1.0.0"
-DEBUG=True
-SECRET_KEY=your-jwt-secret-key
-ALGORITHM=HS256
-ACCESS_TOKEN_EXPIRE_MINUTES=60
-DATABASE_URL=sqlite:///./medassistai.db
+After starting the backend, open:
+
+```text
+http://127.0.0.1:8000/docs
 ```
 
-#### `frontend/.env`
-```env
-VITE_API_BASE_URL=http://localhost:8000
-```
+Swagger can be used to:
+
+- Test API endpoints
+- Verify request and response schemas
+- Test authentication
+- Test JWT-protected routes
+- Validate backend workflows
 
 ---
 
-## 🖼️ Screenshots
+# 🧪 Testing & Validation
 
-*(Add application screenshots here)*
+The backend was tested through **Swagger/OpenAPI** and application workflows.
+
+### Testing Coverage
+
+- ✅ Authentication
+- ✅ JWT authorization
+- ✅ Patient operations
+- ✅ Doctor operations
+- ✅ Appointment management
+- ✅ Symptom management
+- ✅ Disease prediction
+- ✅ Disease name mapping
+- ✅ Risk assessment
+- ✅ Severity analysis
+- ✅ Health reports
+- ✅ Report downloading
+- ✅ Analytics
 
 ---
 
-## 📄 License
 
-Distributed under the MIT License. See [`LICENSE`](LICENSE) for more details.
+# 🚀 Future Enhancements
+
+Potential future improvements include:
+
+- 🔮 Advanced disease prediction models
+- 🧠 Explainable AI for prediction results
+- 📱 Mobile application
+- 💬 AI healthcare assistant
+- 📊 Advanced healthcare analytics
+- 🔔 Appointment notifications
+- ☁️ Cloud deployment
+- 🔒 Enhanced security and auditing
 
 ---
 
-## 👥 Contributors
 
-- **Development Team** — MedAssist AI Engineers & Architects
+# 👥 Team
 
----
-*For support or inquiries, please open an issue in the GitHub repository.*
+## MedAssist AI
+
+**Team:** Team 2
+
+**Developer / Backend:** SAI KIRAN
+
+

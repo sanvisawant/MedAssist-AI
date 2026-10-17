@@ -1,30 +1,28 @@
 import client from './client';
 
-/**
- * GET /reports/my
- * Returns: Array of ReportResponse
- */
 export async function getMyReports() {
   const response = await client.get('/reports/my');
   return response.data;
 }
 
-/**
- * GET /reports/{id}
- */
-export async function getReport(id) {
+export async function getReportById(id) {
   const response = await client.get(`/reports/${id}`);
   return response.data;
 }
 
-/**
- * GET /reports/{id}/download
- * Returns plain text report (Content-Type: text/plain)
- */
-export async function downloadReportText(id) {
+export async function getPatientReports(patientId) {
+  const response = await client.get(`/reports/patient/${patientId}`);
+  return response.data;
+}
+
+export async function updateReportNotes(id, notes) {
+  const response = await client.put(`/reports/${id}/notes`, notes);
+  return response.data;
+}
+
+export async function downloadReport(id) {
   const response = await client.get(`/reports/${id}/download`, {
-    responseType: 'text',
+    responseType: 'blob'
   });
-  // Backend returns raw text/plain — return it directly
-  return { report_text: response.data };
+  return response.data;
 }
