@@ -23,6 +23,16 @@ Built as a modern full-stack application, MedAssist AI features a high-performan
 
 ---
 
+## 🌐 Live Deployment
+
+MedAssist AI is fully deployed and accessible live:
+
+- **🚀 Live Web Application**: [https://medassistai-frontend.vercel.app](https://medassistai-frontend.vercel.app) *(Deployed on Vercel)*
+- **⚡ Backend REST API**: Configured via Render with automatic model fetching from Hugging Face.
+- **📖 Interactive API Docs**: Access Swagger docs at `http://127.0.0.1:8000/docs` locally or via the deployed API backend.
+
+---
+
 ## 🌟 Key Features
 
 ### 🧠 1. AI Symptom Screening & Decision Engine
@@ -36,11 +46,11 @@ Built as a modern full-stack application, MedAssist AI features a high-performan
 ### 👨‍⚕️ 2. Role-Based Portals & Dashboards
 - **Patient Portal**: Personalized health dashboard, symptom checker, diagnostic history, medical report downloads, appointment scheduling, and prescription history.
 - **Doctor Portal**: Assigned patient management, real-time appointment tracking, clinical note authoring, prescription creation, and disease distribution analytics.
-- **Admin & Staff Portals**: System-wide analytics, doctor & staff management, patient registration, appointment status oversight, and system settings.
+- **Admin Portal**: System-wide analytics, doctor & patient management, appointment status oversight, and system settings.
 
 ### 📋 3. Clinical Health Reports & History
 - Automated report generation containing patient details, symptom inputs, predicted conditions, risk gauge indicators, severity metrics, and clinical recommendations.
-- Doctor notes integration and printable/downloadable PDF report support.
+- Doctor notes integration and printable/downloadable health report support.
 
 ### 🔒 4. Authentication & Security
 - Secure **JWT Bearer Token** authentication with Bcrypt password hashing.
@@ -94,16 +104,6 @@ Random Forest         XGBoost             LightGBM
 
 ---
 
-## 🌐 Live Deployment
-
-MedAssist AI is fully deployed and accessible live:
-
-- **🚀 Live Web Application**: [https://medassistai-frontend.vercel.app](https://medassistai-frontend.vercel.app) *(Deployed on Vercel)*
-- **⚡ Backend REST API**: Configured via Render with automatic model fetching from Hugging Face.
-- **📖 Interactive API Docs**: Access Swagger docs at `http://127.0.0.1:8000/docs` locally or via the deployed API backend.
-
----
-
 ## 🛠️ Technology Stack
 
 | Layer | Technology | Description |
@@ -124,57 +124,68 @@ MedAssist AI is fully deployed and accessible live:
 ## 📂 Repository Architecture
 
 ```text
-MedAssistAI/
-├── Milestone 1/                  # Milestone 1: Data exploration, initial models, & report
-│   ├── Milestone 1 Report.pdf
-│   ├── apply_severity.py
-│   ├── evaluate_and_test.py
-│   ├── models/
-│   ├── notebooks/
-│   └── processed_data/
-├── Milestone 2/                  # Milestone 2: Model training (GBM, XGBoost) & report
-│   ├── Milestone 2 Report.pdf
-│   ├── data_processing.ipynb
-│   ├── gradient_boosting.ipynb
-│   ├── model_training.ipynb
-│   └── xg_boost.ipynb
-├── Milestone 3/                  # Milestone 3: Full FastAPI + ML integration & React UI
-│   ├── Milestone 3 Report.pdf
-│   ├── backend/
-│   ├── frontend/
-│   ├── README.md
-│   └── requirements.txt
-├── backend/                      # Production Backend Application (Main Files)
+MedAssist-AI/
+├── backend/                      # Production Backend Application
 │   ├── app/
-│   │   ├── config/              # Application settings & environment variables
-│   │   ├── database/            # SQLAlchemy database connection & session setup
-│   │   ├── ml/                  # ML models, predictor, preprocessing, & disease mapping
-│   │   ├── models/              # Database models (User, Patient, Doctor, Appointment, Report, Symptom)
-│   │   ├── routers/             # FastAPI API endpoints (Auth, Patient, Doctor, Predict, Reports, Analytics)
-│   │   ├── schemas/             # Pydantic validation schemas
-│   │   ├── services/            # Business logic & recommendation engines
-│   │   ├── utils/               # JWT handlers, password hashing, & role checkers
-│   │   └── main.py              # FastAPI entrypoint
-│   ├── Dockerfile
-│   ├── docker-compose.yml
-│   ├── render.yaml
-│   └── requirements.txt
-├── frontend/                     # Production Frontend Application (Main Files)
-│   ├── public/                  # Static assets & icons
+│   │   ├── config/              # Application settings & environment configuration
+│   │   ├── database/            # SQLAlchemy database engine, session, & seed scripts
+│   │   ├── ml/                  # ML model (lgb_model.pkl), predictor, preprocessing, disease mapping
+│   │   ├── models/              # Database models (User, Patient, Doctor, Appointment, Prescription, etc.)
+│   │   ├── routers/             # FastAPI route handlers (Auth, Patient, Doctor, Appointment, Prescription, Predict, Reports, Analytics)
+│   │   ├── schemas/             # Pydantic validation & response schemas
+│   │   ├── services/            # Business logic, analysis, & recommendation engines
+│   │   ├── utils/               # JWT security, password hashing, & permission guards
+│   │   └── main.py              # FastAPI application entrypoint
+│   ├── .dockerignore
+│   ├── .env.example             # Backend environment variable template
+│   ├── .gitignore
+│   ├── Dockerfile               # Container build instructions
+│   ├── docker-compose.yml       # Docker compose orchestration
+│   ├── render.yaml              # Cloud deployment specification
+│   ├── requirements.txt         # Python package dependencies
+│   ├── test_all_endpoints.py    # Test suite for API endpoints
+│   ├── test_audit_suite.py      # System security & audit verification
+│   ├── test_doctor_creation.py  # Doctor onboarding tests
+│   ├── test_full_system.py      # End-to-end integration test suite
+│   └── test_multi_symptoms.py   # Multi-symptom inference test suite
+│
+├── frontend/                     # Production Frontend Application
+│   ├── public/                  # Static assets & public files
 │   ├── src/
-│   │   ├── assets/              # Branding assets & images
-│   │   ├── components/          # UI components (Analytics, Auth, Layout, Risk, Symptoms)
+│   │   ├── assets/              # Static media & artwork
+│   │   ├── components/          # Reusable UI components
+│   │   │   ├── analytics/       # Analytics charts & metric cards
+│   │   │   ├── auth/            # ProtectedRoute & auth components
+│   │   │   ├── landing/         # Modern landing page sections (Hero, Story, Expertise, Studios, Feedback, etc.)
+│   │   │   ├── layout/          # DashboardLayout, Sidebar, TopBar
+│   │   │   ├── prediction/      # Prediction results display
+│   │   │   ├── recommendations/ # Clinical guidance cards
+│   │   │   ├── reports/         # Report viewer & download handlers
+│   │   │   ├── risk/            # Risk gauges & severity indicators
+│   │   │   ├── symptoms/        # Interactive symptom selector & search
+│   │   │   └── ui/              # Button, Card, Input, Modal, ThemeToggle, ErrorBoundary
+│   │   ├── constants/           # User roles (ADMIN, DOCTOR, PATIENT) & app constants
 │   │   ├── context/             # React Context (AuthContext, SessionContext, ThemeContext)
-│   │   ├── hooks/               # Custom React hooks (useAuth, useSymptomChecker)
-│   │   ├── pages/               # Dashboard pages (Patient, Doctor, Admin, Staff, Auth, Landing)
-│   │   ├── routes/              # Protected & role-based routes
-│   │   ├── services/            # API integration endpoints
-│   │   └── styles/              # Global & utility CSS
-│   ├── package.json
-│   ├── vercel.json
-│   └── vite.config.js
-├── .env.example                  # Monorepo environment variable template
-├── .gitignore                    # Git ignore configuration
+│   │   ├── hooks/               # Custom React hooks (useAuth, useSymptomChecker, useReportDownload)
+│   │   ├── pages/               # Application views & dashboards
+│   │   │   ├── auth/            # LoginPage, RegisterPage
+│   │   │   ├── dashboard/       # Role-specific portals (Admin, Doctor, Patient)
+│   │   │   └── landing/         # LandingPage
+│   │   ├── routes/              # AppRoutes configuration
+│   │   ├── services/            # Axios API integration clients & mock services
+│   │   ├── styles/              # Global CSS & Tailwind design tokens
+│   │   ├── App.jsx              # Main React application component
+│   │   ├── index.css            # Global styling
+│   │   └── main.jsx             # React entry point
+│   ├── .env.example             # Frontend environment variable template
+│   ├── .gitignore
+│   ├── package.json             # Frontend dependencies & npm scripts
+│   ├── package-lock.json
+│   ├── tailwind.config.js       # Tailwind CSS styling configuration
+│   ├── vercel.json              # Vercel deployment routing configuration
+│   └── vite.config.js           # Vite build configuration
+│
+├── .gitignore                    # Root Git ignore rules
 ├── LICENSE                       # MIT License
 └── README.md                     # Main Project Documentation
 ```
@@ -207,7 +218,7 @@ MedAssistAI/
 ### 📅 Appointments & Prescriptions (`/appointments`, `/prescriptions`)
 | Method | Endpoint | Description | Access |
 |---|---|---|---|
-| `POST` | `/appointments` | Schedule a medical appointment | Patient / Staff |
+| `POST` | `/appointments` | Schedule a medical appointment | Patient |
 | `GET` | `/appointments/my` | Retrieve user's appointment history | Authenticated |
 | `PUT` | `/appointments/{id}/status` | Update appointment status (Confirmed/Cancelled) | Doctor / Admin |
 | `POST` | `/prescriptions` | Create a new prescription for patient | Doctor |
@@ -232,31 +243,33 @@ MedAssistAI/
 
 ---
 
-### 1. Clone the Branch
+### 1. Clone the Repository
 
-Clone the `SanviSawant` branch to access the latest full-stack codebase:
+Clone your repository to get started:
 
 ```bash
-git clone -b SanviSawant https://github.com/GKSJ-AI-CliniScan/MedAssistAI.git
-cd MedAssistAI
+git clone https://github.com/sanvisawant/MedAssist-AI.git
+cd MedAssist-AI
 ```
-
-> **Note**: For active development and execution, use the primary production directories (`backend/` and `frontend/`). The milestone directories (`Milestone 1/`, `Milestone 2/`, `Milestone 3/`) contain archived phase documentation and reports.
 
 ---
 
 ### 2. Backend Setup & Run
 
+Open a terminal and set up the FastAPI backend:
+
 ```bash
-# Navigate to backend directory
+# Navigate to the backend directory
 cd backend
 
-# Create virtual environment
+# Create a Python virtual environment
 python -m venv venv
 
-# Activate virtual environment
+# Activate the virtual environment
 # On Windows (PowerShell):
-venv\Scripts\activate
+venv\Scripts\Activate.ps1
+# On Windows (Command Prompt):
+venv\Scripts\activate.bat
 # On macOS/Linux:
 source venv/bin/activate
 
@@ -274,10 +287,10 @@ python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 
 ### 3. Frontend Setup & Run
 
-Open a new terminal window:
+Open a separate terminal window and start the React client:
 
 ```bash
-# Navigate to frontend directory
+# Navigate to the frontend directory
 cd frontend
 
 # Install Node dependencies
@@ -293,10 +306,13 @@ npm run dev
 
 ### 4. Docker Setup (Optional)
 
-To run the full stack using Docker Compose:
+To build and run the backend using Docker Compose:
 
 ```bash
+# Navigate to backend directory
 cd backend
+
+# Run with Docker Compose
 docker-compose up --build -d
 ```
 
@@ -304,15 +320,12 @@ docker-compose up --build -d
 
 ## ⚙️ Environment Configuration
 
-Environment configuration is managed via `.env.example` templates committed in the repository.
+Environment configuration is managed via `.env.example` templates committed in each respective project folder:
 
-To set up your local environment, copy the example files to create your local `.env` files:
-
-- **Root Monorepo Template**: `.env.example`
 - **Backend Environment**: Copy `backend/.env.example` ➔ `backend/.env`
 - **Frontend Environment**: Copy `frontend/.env.example` ➔ `frontend/.env`
 
-*(Refer to `.env.example` in each folder for available environment key templates.)*
+*(Refer to `.env.example` inside `backend/` and `frontend/` for available environment variable keys and defaults.)*
 
 ---
 
@@ -324,7 +337,7 @@ This project is licensed under the **MIT License**. See the [`LICENSE`](LICENSE)
 
 ## 👥 Contributors
 
-- **Sanvi Sawant** (Team 2)
+- **Sanvi Sawant**
 
 ---
-*For questions, issues, or contributions, please feel free to submit an issue or pull request on the [GitHub repository](https://github.com/GKSJ-AI-CliniScan/MedAssistAI).*
+*For questions, issues, or contributions, please feel free to submit an issue or pull request on the [GitHub repository](https://github.com/sanvisawant/MedAssist-AI).*
